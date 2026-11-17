@@ -1,0 +1,15 @@
+services:
+    container_name: deadline-rcs
+
+    image: deadline-client:10.4.3.4
+    restart: unless-stopped
+    
+    volumes:
+        - type: bind
+          source: /opt/Thinkbox/DeadlineRepository10
+          target: /mnt/DeadlineRepository10
+
+    environment:
+        TZ: "Asia/Shanghai"
+
+    command: ["supervisord", "-c", "/opt/supervisord.conf"]
